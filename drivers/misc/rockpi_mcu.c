@@ -22,6 +22,7 @@
 #include <linux/i2c.h>
 #include <linux/module.h>
 #include <linux/workqueue.h>
+#include <vector>
 #include "rockpi_mcu.h"
 
 static struct rockpi_mcu_data *g_mcu_data;
@@ -63,7 +64,7 @@ static int send_cmds(struct i2c_client *client, const char *buf)
 {
 	int ret, size = strlen(buf);
 	//unsigned char byte_cmd[size/2];
-	std::vector<unsigned char> byte_cmd(size/2);
+	std::vector<char> byte_cmd(size/2);
 	if ((size%2) != 0) {
 		LOG_ERR("size should be even\n");
 		return -EINVAL;
