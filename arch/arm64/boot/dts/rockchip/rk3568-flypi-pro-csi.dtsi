@@ -77,6 +77,10 @@
 		clock-names = "ext_cam_ov5647_clk";
 		pwdn-gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_LOW>;
 		camera-mode = <0>; /* 0 - full, 1 - 192x01080@30, 2, 3 - 640x480@60 */
+		rockchip,camera-module-index = <0>;
+		rockchip,camera-module-facing = "back";
+		rockchip,camera-module-name = "TongJu";
+		rockchip,camera-module-lens-name = "CHT842-MD";
 
 		port {
 			ov5647_out: endpoint {
