@@ -35,10 +35,119 @@
 
 	dsi0_panel: dsi-panel@0 {
 		power-supply = <&vcc_mipi>;
-		compatible = "rockpi,tc358762";
+		compatible = "simple-panel-dsi";
 		reg = <0x0>;
 		status = "okay";
 		//enable-gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
+		
+		width-mm = <217>;
+        	height-mm = <136>;
+
+        	dsi,flags = <(MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO_SYNC_PULSE)>;
+        	dsi,format = <MIPI_DSI_FMT_RGB888>;
+        	dsi,lanes = <2>;
+
+        	panel-init-sequence = [
+			39 00 06 f0 55 aa 52 08 00
+			39 00 0a c0 00 00 00 00 00 00 00 00 02
+			15 00 02 c8 80
+			39 00 03 b1 e8 21
+			39 00 03 b5 05 00
+			39 00 03 bb 93 93
+			39 00 03 bc 0f 00
+			39 00 05 bd 11 30 10 10
+			39 00 06 f0 55 aa 52 08 01
+			15 00 02 ce 00
+			39 00 03 b7 00 48
+			15 00 02 ce 00
+			15 00 02 ca 03
+			39 00 03 b3 23 23
+			39 00 03 b4 23 23
+			39 00 03 c3 5a 5a
+			39 00 03 c4 5a 5a
+			39 00 03 c2 5a 5a
+			39 00 03 b9 44 44
+			39 00 03 ba 24 24
+			39 00 03 bc 50 00
+			39 00 03 bd 50 00
+			39 00 03 be 00 71
+			39 00 03 bf 00 a0
+			39 00 06 f0 55 aa 52 08 02
+			15 00 02 b0 40
+			39 00 11 d1 00 00 00 1b 00 40 00 5b 00 71 00 97 00 b5 00 e6
+			39 00 11 d2 01 0d 01 4b 01 7c 01 c8 02 03 02 05 02 3a 02 72
+			39 00 11 d3 02 95 02 c5 02 e7 03 15 03 32 03 57 03 71 03 95
+			39 00 05 d4 03 b0 03 b3
+			39 00 06 f0 55 aa 52 08 03
+			39 00 05 b0 00 00 00 00
+			39 00 05 b1 00 00 00 00
+			39 00 08 b2 00 00 0a 06 00 f0 5b
+			39 00 08 b3 00 00 09 06 00 f0 5b 
+			39 00 0b b6 f0 05 06 03 00 00 00 00 10 10
+			39 00 0b b7 f0 05 07 03 00 00 00 00 10 10
+			39 00 08 bc c5 03 00 08 00 f0 5b
+			39 00 03 c4 00 00
+			39 00 06 f0 55 aa 52 08 05
+			39 00 05 b0 33 04 00 01
+			39 00 03 b1 40 00
+			39 00 04 b2 03 02 22
+			39 00 05 b3 83 23 42 9a
+			39 00 05 b4 c5 35 77 53
+			39 00 08 b5 4c e5 31 33 33 a3 0a
+			39 00 07 b6 00 00 d5 31 77 53
+			39 00 06 b9 00 00 00 05 00
+			39 00 06 c0 35 33 33 50 05
+			39 00 05 c6 00 00 00 00
+			39 00 03 ce f0 1f
+			39 00 06 d2 00 25 02 00 00
+			39 00 03 e7 e8 ff
+			39 00 03 e8 ff ff
+			15 00 02 e9 00
+			15 00 02 ea aa
+			15 00 02 eb aa
+			15 00 02 ec aa
+			15 00 02 ee aa
+			39 00 06 f0 55 aa 52 08 06
+			39 00 06 b0 7d 4a 7d 7d 7d
+			39 00 06 b1 7d 7d 42 5d 7d
+			39 00 06 b2 7d 63 61 7d 7d
+			39 00 06 b3 5f 72 7d 7d 7d
+			39 00 03 b4 7d 7d
+			39 00 06 b5 7d 48 7d 7d 7d
+			39 00 06 b6 7d 7d 40 5c 7d
+			39 00 06 b7 7d 62 60 7d 7d
+			39 00 06 b8 5e 72 7d 7d 7d
+			39 00 03 b9 7d 7d	
+			15 00 02 35 00  
+			05 96 01 11	  
+			05 96 01 29
+		];
+
+		panel-exit-sequence = [
+		    05 00 01 28
+		    05 78 01 10
+		];
+
+	       display-timings {
+		   native-mode = <&timing0>;
+
+		    timing0: timing0 {
+			clock-frequency = <66000000>;
+			hactive = <800>;
+			vactive = <480>;
+		       	hback-porch = <8>;
+		      	hsync-len = <10>;
+			hfront-porch = <8>;
+			vback-porch = <8>;
+			vfront-porch = <8>;
+			vsync-len = <10>;
+			hsync-active = <0>;
+			vsync-active = <0>;
+			de-active = <0>;
+			pixelclk-active = <0>;
+		    };
+		};
+
 
 		ports {			
 			#address-cells = <1>;
