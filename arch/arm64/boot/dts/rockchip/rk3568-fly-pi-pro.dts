@@ -98,7 +98,46 @@
 			sound-dai = <&pdmics>;
 		};
 	};
+	
+	rk809_sound: rk809-sound {
+		status = "okay";
+		compatible = "rockchip,multicodecs-card";
+		rockchip,card-name = "rockchip-rk809";
+		hp-det-gpio = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
+		rockchip,format = "i2s";
+		rockchip,mclk-fs = <256>;
+		rockchip,cpu = <&i2s1_8ch>;
+		rockchip,codec = <&rk809_codec>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hp_det>;
+	};
 
+	spdif-sound {
+		status = "okay";
+		compatible = "simple-audio-card";
+		simple-audio-card,name = "ROCKCHIP,SPDIF";
+		simple-audio-card,cpu {
+				sound-dai = <&spdif_8ch>;
+		};
+		simple-audio-card,codec {
+				sound-dai = <&spdif_out>;
+		};
+	};
+
+	spdif_out: spdif-out {
+			status = "okay";
+			compatible = "linux,spdif-dit";
+			#sound-dai-cells = <0>;
+	};
+
+	vad_sound: vad-sound {
+		status = "disabled";
+		compatible = "rockchip,multicodecs-card";
+		rockchip,card-name = "rockchip,rk3568-vad";
+		rockchip,cpu = <&i2s1_8ch>;
+		rockchip,codec = <&rk809_codec>, <&vad>;
+	};
+	
 	reserved-memory {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -605,7 +644,7 @@
 		};
 	};
 };
-/*
+
 &i2s0_8ch {
 	status = "okay";
 };
@@ -619,7 +658,7 @@
 		     &i2s1m0_sdi0
 		     &i2s1m0_sdo0>;
 };
-*/
+
 &iep {
 	status = "okay";
 };
@@ -735,6 +774,14 @@
 	status = "okay";
 };
 */
+
+&can1 {
+	assigned-clocks = <&cru CLK_CAN1>;
+	assigned-clock-rates = <150000000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&can1m1_pins>;
+	status = "okay";
+};
 
 &spi1 {
 	/* ST7789V3 */
