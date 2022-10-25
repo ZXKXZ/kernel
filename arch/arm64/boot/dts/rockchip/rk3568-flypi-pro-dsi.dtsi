@@ -196,13 +196,13 @@
 &i2c3 {
 	status = "okay";
 	pinctrl-0 = <&i2c3m1_xfer>;
-
+/*
 	rockpi_mcu: rockpi-mcu@45 {
 		compatible = "rockpi_mcu";
 		reg = <0x45>;
 		status = "okay";
 	};
-
+*/
 	rockpi_ft5406: rockpi_ft5406@38 {
 		compatible = "rockpi_ft5406";
 		reg = <0x38>;
