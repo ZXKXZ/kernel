@@ -1,6 +1,8 @@
 #ifndef _ROCKPI_MCU_H_
 #define _ROCKPI_MCU_H_
 
+using namespace std;
+
 #define LOG_INFO(fmt,arg...) pr_info("rockpi-mcu: %s: "fmt, __func__, ##arg);
 #define LOG_ERR(fmt,arg...) pr_err("rockpi-mcu: %s: "fmt, __func__, ##arg);
 
