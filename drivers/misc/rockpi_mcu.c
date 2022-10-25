@@ -62,7 +62,7 @@ static int string_to_byte(const char *source, unsigned char *destination, int si
 static int send_cmds(struct i2c_client *client, const char *buf)
 {
 	int ret, size = strlen(buf);
-	unsigned char byte_cmd[size/2];
+	unsigned char byte_cmd[64];
 	if ((size%2) != 0) {
 		LOG_ERR("size should be even\n");
 		return -EINVAL;
